@@ -31,10 +31,9 @@ class App extends React.Component {
 
   } // closes constructor
 
-  select(e) {
-    let index = e.target.dataset.reactid[9];
+  select(video) {
     this.setState({
-      currentVideo: exampleVideoData[index]
+      currentVideo: video
     });
   }
  

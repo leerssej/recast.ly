@@ -1,14 +1,13 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       query: '',
-
-      videos: window.exampleVideoData,
+      videos: [],
       currentVideo: window.exampleVideoData[0],
-    }; // closes state
-
-  } // closes constructor
+    };
+  }
 
   loadNewVideos(data) {
     this.setState({
@@ -49,7 +48,6 @@ class App extends React.Component {
     };
     searchYouTube(options, this.loadNewVideos.bind(this));
   }
-
 
   render() {
     return (

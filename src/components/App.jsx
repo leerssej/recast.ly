@@ -24,7 +24,19 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      currentVideo: exampleVideoData[0],
+    };
+
   } // closes constructor
+
+  select(e) {
+    let index = e.target.dataset.reactid[9];
+    this.setState({
+      currentVideo: exampleVideoData[index]
+    });
+  }
  
   render() {
     return (
@@ -36,10 +48,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer video={exampleVideoData[0]}/>
+            <VideoPlayer video={this.state.currentVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={exampleVideoData}/>
+            <VideoList videos={exampleVideoData} selectMethod={this.select.bind(this)}/>
           </div>
         </div>
       </div>

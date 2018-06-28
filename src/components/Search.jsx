@@ -1,6 +1,6 @@
 var Search = (props) => (
   <div className="search-bar form-inline">
-    <input className="form-control" type="text" />
+    <input className="form-control" type="text" onKeyUp={(e) => { if (e.keyCode === 13) { props.searchMethod($('.form-control').val()); } } }/>
     <button className="btn hidden-sm-down" onClick={() => { props.searchMethod($('.form-control').val()); } }>
       <span className="glyphicon glyphicon-search"></span>
     </button>

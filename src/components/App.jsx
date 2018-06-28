@@ -1,51 +1,17 @@
-// var App = () => (
-//   <div>
-//     <nav className="navbar">
-//       <div className="col-md-6 offset-md-3">
-//         <Search/>
-//       </div>
-//     </nav>
-//     <div className="row">
-//       <div className="col-md-7">
-//         <VideoPlayer currentVideo={exampleVideoData[0]}/>
-//       </div>
-//       <div className="col-md-5">
-//         <VideoList videos={exampleVideoData}/>
-//       </div>
-//     </div>
-//   </div>
-// );
-
-// // In the ES6 spec, files are "modules" and do not share a top-level scope
-// // `var` declarations will only exist globally where explicitly defined
-// window.App = App;
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    // this.loadNewVideos.bind(this);
-
     this.state = {
       query: '',
-      videos: window.exampleVideoData,
-      currentVideo: window.exampleVideoData[0],
-      options: {
-        part: 'snippet',
-        type: 'video',
-        q: 'cats',
-        maxResults: 5,
-        key: window.YOUTUBE_API_KEY,
-      },
-    }; // closes state
-
-  } // closes constructor
+      videos: [],
+      currentVideo: {},
+    };
+  }
 
   loadNewVideos(data) {
-    console.log(this);
     this.setState({
       videos: data.items,
+      currentVideo: data.items[0],
     });
   }  
 
@@ -59,13 +25,27 @@ class App extends React.Component {
     this.setState({
       query: newQuery,
     });
+    var options = {
+      part: 'snippet',
+      type: 'video',
+      q: newQuery,
+      maxResults: 5,
+      key: window.YOUTUBE_API_KEY,
+    };
     $('.form-control').val('');
-    searchYouTube(this.state.options, this.loadNewVideos.bind(this));
+    searchYouTube(options, this.loadNewVideos.bind(this));
   }
 
-  // componentDidMount(this.state.options) {
-  //   searchYouTube(options);
-  // }
+  componentDidMount() {
+    var options = {
+      part: 'snippet',
+      type: 'video',
+      q: 'kittens',
+      maxResults: 5,
+      key: window.YOUTUBE_API_KEY,
+    };
+    searchYouTube(options, this.loadNewVideos.bind(this));
+  }
 
 
   render() {

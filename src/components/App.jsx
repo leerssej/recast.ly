@@ -25,33 +25,47 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    // this.loadNewVideos.bind(this);
+
     this.state = {
-      currentVideo: exampleVideoData[0],
+      query: '',
+      videos: window.exampleVideoData,
+      currentVideo: window.exampleVideoData[0],
+      options: {
+        part: 'snippet',
+        type: 'video',
+        q: 'cats',
+        maxResults: 5,
+        key: window.YOUTUBE_API_KEY,
+      },
     }; // closes state
 
   } // closes constructor
 
+  loadNewVideos(data) {
+    console.log(this);
+    this.setState({
+      videos: data.items,
+    });
+  }  
+
   select(video) {
     this.setState({
-      currentVideo: video
+      currentVideo: video,
     });
   }
  
-  componentDidMount() {
-    var options = {
-      part: 'snippet',
-      type: 'video',
-      q: query,
-      maxResults: 5,
-      key: YOUTUBE_API_KEY,
-    };
-
-    // var callback = function() {
-    // }
-
-    searchYouTube(options, callback);
-
+  search(newQuery) {
+    this.setState({
+      query: newQuery,
+    });
+    $('.form-control').val('');
+    searchYouTube(this.state.options, this.loadNewVideos.bind(this));
   }
+
+  // componentDidMount(this.state.options) {
+  //   searchYouTube(options);
+  // }
 
 
   render() {
@@ -59,7 +73,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search/>
+            <Search searchMethod={this.search.bind(this)}/>
           </div>
         </nav>
         <div className="row">
@@ -67,7 +81,7 @@ class App extends React.Component {
             <VideoPlayer video={this.state.currentVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={exampleVideoData} selectMethod={this.select.bind(this)}/>
+            <VideoList videos={this.state.videos} selectMethod={this.select.bind(this)}/>
           </div>
         </div>
       </div>

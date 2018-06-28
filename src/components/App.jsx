@@ -27,7 +27,7 @@ class App extends React.Component {
 
     this.state = {
       currentVideo: exampleVideoData[0],
-    };
+    }; // closes state
 
   } // closes constructor
 
@@ -37,6 +37,23 @@ class App extends React.Component {
     });
   }
  
+  componentDidMount() {
+    var options = {
+      part: 'snippet',
+      type: 'video',
+      q: query,
+      maxResults: 5,
+      key: YOUTUBE_API_KEY,
+    };
+
+    // var callback = function() {
+    // }
+
+    searchYouTube(options, callback);
+
+  }
+
+
   render() {
     return (
       <div>

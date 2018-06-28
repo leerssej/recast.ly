@@ -22,7 +22,7 @@ class App extends React.Component {
     });
   }
  
-  search(newQuery) {
+  search(newQuery, e) {
     this.setState({
       query: newQuery,
     });
@@ -34,7 +34,9 @@ class App extends React.Component {
       key: window.YOUTUBE_API_KEY,
     };
 
-    $('.form-control').val('');
+    if (e.keyCode === 13) {
+      $('.form-control').val('');
+    }
     searchYouTube(options, this.loadNewVideos.bind(this));
   }
 

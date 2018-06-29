@@ -3,10 +3,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       query: '',
-      videos: [],
-      currentVideo: {},
-    };
-  }
+
+      videos: window.exampleVideoData,
+      currentVideo: window.exampleVideoData[0],
+    }; // closes state
+
+  } // closes constructor
 
   loadNewVideos(data) {
     this.setState({
@@ -25,6 +27,7 @@ class App extends React.Component {
     this.setState({
       query: newQuery,
     });
+
     var options = {
       part: 'snippet',
       type: 'video',
@@ -32,6 +35,7 @@ class App extends React.Component {
       maxResults: 5,
       key: window.YOUTUBE_API_KEY,
     };
+
     $('.form-control').val('');
     searchYouTube(options, this.loadNewVideos.bind(this));
   }

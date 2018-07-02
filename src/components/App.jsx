@@ -10,6 +10,9 @@ class App extends React.Component {
 
   setCurrentVideo(videoSelected) {
     console.log(videoSelected);
+    this.setState({
+      currentVideo: videoSelected,
+    });
   }
 
   render() {
@@ -27,7 +30,7 @@ class App extends React.Component {
           <div className="col-md-5">
             <VideoList 
               videos={this.state.videos}
-              setVideoTitleClickedToCurrentVideo={(videoSelected) => this.setCurrentVideo.bind(videoSelected)}
+              setCurrentVideo={(videoSelected) => this.setCurrentVideo(videoSelected)}
             />
           </div>
         </div>

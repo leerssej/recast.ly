@@ -6,7 +6,7 @@ var VideoListEntry = ({video, setCurrentVideo}) => (
     <div className="media-body">
       <div 
         className="video-list-entry-title"
-        setCurrentVideo={setCurrentVideo}
+        onClick={setCurrentVideo}
       >{video.snippet.title}</div>
       <div className="video-list-entry-detail">{video.snippet.description}}</div>
     </div>

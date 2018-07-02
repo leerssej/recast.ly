@@ -8,12 +8,16 @@ class App extends React.Component {
     };
   }
 
+  setCurrentVideo(videoSelected) {
+    console.log(videoSelected);
+  }
+
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <Search />
           </div>
         </nav>
         <div className="row">
@@ -21,7 +25,10 @@ class App extends React.Component {
             <VideoPlayer video={this.state.currentVideo} />
           </div>
           <div className="col-md-5">
-            <VideoList videos={this.state.videos}/>
+            <VideoList 
+              videos={this.state.videos}
+              setVideoTitleClickedToCurrentVideo={(videoSelected) => this.setCurrentVideo.bind(videoSelected)}
+            />
           </div>
         </div>
       </div>

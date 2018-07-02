@@ -1,9 +1,10 @@
-var VideoList = ({videos}) => (
+var VideoList = ({videos, setCurrentVideo}) => (
   <div className="video-list">
     {videos.map((vid, index) => 
       <VideoListEntry 
         video={vid}
         key={index}
+        setCurrentVideo={() => setCurrentVideo(vid)}
       />
     )}
   </div>

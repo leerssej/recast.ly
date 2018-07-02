@@ -1,10 +1,13 @@
-var VideoListEntry = ({video}) => (
+var VideoListEntry = ({video, setCurrentVideo}) => (
   <div className="video-list-entry media">
     <div className="media-left media-middle">
       <img className="media-object" src={`https://i.ytimg.com/vi/${video.id.videoId}/default.jpg`} alt="" />
     </div>
     <div className="media-body">
-      <div className="video-list-entry-title">{video.snippet.title}</div>
+      <div 
+        className="video-list-entry-title"
+        setCurrentVideo={setCurrentVideo}
+      >{video.snippet.title}</div>
       <div className="video-list-entry-detail">{video.snippet.description}}</div>
     </div>
   </div>

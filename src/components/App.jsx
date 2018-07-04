@@ -15,12 +15,16 @@ class App extends React.Component {
     });
   }
 
+  search(queryText) {
+    console.log(queryText);
+  }
+
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search search={(queryText) => this.search(queryText)}/>
           </div>
         </nav>
         <div className="row">

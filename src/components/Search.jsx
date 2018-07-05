@@ -14,7 +14,7 @@ class Search extends React.Component {
       value: queryText,
     });
     
-    console.log('QueryTextSet: ', this);
+    // console.log('QueryTextSet: ', this);
   }
 
   
@@ -26,7 +26,10 @@ class Search extends React.Component {
           type="text" 
         />
         <button className="btn hidden-sm-down"
-          onClick={() => this.setQueryText($('.form-control').val())}
+          onClick={() => { 
+            this.setQueryText($('.form-control').val());
+            $('.form-control').val('');
+          }}
         >
           <span className="glyphicon glyphicon-search"></span>
         </button>

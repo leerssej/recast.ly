@@ -15,8 +15,21 @@ class App extends React.Component {
     });
   }
 
-  search(queryText) {
+  loadReturnedVideos(youTubeApiResponse) {
+    console.log(youTubeApiResponse);
+  }
+
+  search(queryText, max = 5) {
     console.log(queryText);
+    let options = {
+      key: window.YOUTUBE_API_KEY,
+      query: queryText,
+      max: max,
+    };
+    console.log(searchYouTube);
+    // searchYouTube(options, (youTubeApiResponse) => this.loadReturnedVideos(youTubeApiResponse));
+    searchYouTube(options, (youTubeApiResponse) => this.loadReturnedVideos(youTubeApiResponse));
+
   }
 
   render() {

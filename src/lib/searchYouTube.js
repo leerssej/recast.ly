@@ -7,6 +7,7 @@ var searchYouTube = ({key, query, max}, callback) => {
       'q': query,
       'maxResults': max,
       'part': 'snippet',
+      'embeddable': true,
     },
     success: function(data) {
       callback(data);

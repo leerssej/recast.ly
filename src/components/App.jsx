@@ -3,9 +3,14 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      videos: exampleVideoData,
+      videos: [],
       currentVideo: exampleVideoData[0],
     };
+  }
+
+  componentDidMount() {
+    console.log('mounted!', this);
+    this.search('react tutorials');
   }
 
   setCurrentVideo(videoSelected) {
@@ -16,20 +21,21 @@ class App extends React.Component {
   }
 
   loadReturnedVideos(youTubeApiResponse) {
-    console.log(youTubeApiResponse);
+    // console.log(youTubeApiResponse);
+    this.setState({
+      videos: youTubeApiResponse.items,
+      currentVideo: youTubeApiResponse.items[0],
+    });
   }
 
-  search(queryText, max = 5) {
-    console.log(queryText);
+  search(key, queryText, max = 5) {
+    // console.log(queryText);
     let options = {
       key: window.YOUTUBE_API_KEY,
       query: queryText,
-      max: max,
     };
-    console.log(searchYouTube);
-    // searchYouTube(options, (youTubeApiResponse) => this.loadReturnedVideos(youTubeApiResponse));
+    // console.log(searchYouTube);
     searchYouTube(options, (youTubeApiResponse) => this.loadReturnedVideos(youTubeApiResponse));
-
   }
 
   render() {
@@ -37,7 +43,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search search={(queryText) => this.search(queryText)}/>
+            <Search search={(options) => this.search(options)}/>
           </div>
         </nav>
         <div className="row">

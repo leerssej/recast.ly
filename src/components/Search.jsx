@@ -1,39 +1,39 @@
 class Search extends React.Component {
-  constructor ({search}) {
-    super({search});
+  constructor({ search }) {
+    super({ search });
 
     this.state = {
       value: '',
     };
 
   }
-  
+
   setQueryText(queryText) {
     this.props.search(queryText);
     this.setState({
       value: queryText,
     });
-    
+
     // console.log('QueryTextSet: ', this);
   }
 
-  
+
   render() {
     return (
       <div className="search-bar form-inline">
-        <input 
+        <input
           className="form-control"
-          type="text" 
+          type="text"
         />
         <button className="btn hidden-sm-down"
-          onClick={() => { 
+          onClick={() => {
             this.setQueryText($('.form-control').val());
             $('.form-control').val('');
           }}
         >
           <span className="glyphicon glyphicon-search"></span>
         </button>
-      </div> 
+      </div>
     );
   }
 }

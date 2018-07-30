@@ -43,7 +43,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search search={(options) => this.search(options)}/>
+            <Search search={(options) => this.search(options)} />
           </div>
         </nav>
         <div className="row">
@@ -51,7 +51,7 @@ class App extends React.Component {
             <VideoPlayer video={this.state.currentVideo} />
           </div>
           <div className="col-md-5">
-            <VideoList 
+            <VideoList
               videos={this.state.videos}
               setCurrentVideo={(videoSelected) => this.setCurrentVideo(videoSelected)}
             />

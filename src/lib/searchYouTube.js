@@ -1,6 +1,6 @@
-var searchYouTube = ({key, query, max}, callback) => {
+var searchYouTube = ({ key, query, max }, callback) => {
   $.ajax({
-    url: 'https://www.googleapis.com/youtube/v3/search', 
+    url: 'https://www.googleapis.com/youtube/v3/search',
     contentType: 'application/json',
     data: {
       'key': key,
@@ -9,7 +9,7 @@ var searchYouTube = ({key, query, max}, callback) => {
       'part': 'snippet',
       'embeddable': true,
     },
-    success: function(data) {
+    success: function (data) {
       callback(data);
     },
   });

@@ -1,7 +1,7 @@
-var VideoList = ({videos, setCurrentVideo}) => (
+var VideoList = ({ videos, setCurrentVideo }) => (
   <div className="video-list">
-    {videos.map((vid, index) => 
-      <VideoListEntry 
+    {videos.map((vid, index) =>
+      <VideoListEntry
         video={vid}
         key={index}
         setCurrentVideo={() => setCurrentVideo(vid)}
